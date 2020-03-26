@@ -9,9 +9,9 @@ Feature: Automatizar el Linkedin
 
         Examples:
             | usuario                             | contraseña   |
-            | Alejandro.javierbettini@hotmail.com | Shamshiadad1 |
             | lourdesdotitexeira@gmail.com        | soldecolores |
             | franciscodotitexeira@gmail.com      | Yosoyyo123   |
+            | Alejandro.javierbettini@hotmail.com | Shamshiadad1 |
 
 
     @ejecucionDiaria
