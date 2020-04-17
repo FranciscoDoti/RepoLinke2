@@ -8,7 +8,7 @@ setDefaultTimeout(60 * 1000);
 
 Given('Abrir la pagina de instagram', async function () {
 
-  this.driver = await new webdriver.Builder().forBrowser('chrome').build();
+  this.driver = await new webdriver.Builder().usingServer('http://localhost:4444/wd/hub/').forBrowser('chrome').build();
   await this.driver.get('http://www.instagram.com');
   await this.driver.manage().window().maximize();
 });
