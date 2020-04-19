@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "chai": "^4.2.0",
-    "chromedriver": "^78.0.1",
+    "chromedriver": "latest",
     "cucumber": "^6.0.3",
     "selenium-webdriver": "^4.0.0-alpha.5"
   },
