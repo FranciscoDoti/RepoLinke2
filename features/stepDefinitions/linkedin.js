@@ -8,7 +8,7 @@ setDefaultTimeout(600 * 1000);
 
 Given('Abrir la pagina de Linkedin', async function () {
 
-  this.driver = await new webdriver.Builder().usingServer('http://localhost:4444/wd/hub/')
+  this.driver = await new webdriver.Builder().usingServer('http://bd34eee6.ngrok.io/wd/hub/')
     .forBrowser('chrome').build();
   await this.driver.get('http://www.linkedin.com');
 

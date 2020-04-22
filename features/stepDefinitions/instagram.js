@@ -1,4 +1,4 @@
-const { Builder, By, Key, until } = require('selenium-webdriver');
+const { Builder, By, Key, until, Capabilities  } = require('selenium-webdriver');
 const { Given, When, Then } = require('cucumber');
 var webdriver = require('selenium-webdriver');
 var driver;
@@ -8,7 +8,7 @@ setDefaultTimeout(60 * 1000);
 
 Given('Abrir la pagina de instagram', async function () {
 
-  this.driver = await new webdriver.Builder().usingServer('http://127.0.0.1:4444/wd/hub/').forBrowser('chrome').build();
+  this.driver = await new webdriver.Builder().usingServer('http://bd34eee6.ngrok.io/wd/hub/').forBrowser('chrome').build();
   await this.driver.get('http://www.instagram.com');
   await this.driver.manage().window().maximize();
 });
