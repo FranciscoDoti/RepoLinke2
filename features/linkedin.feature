@@ -12,11 +12,3 @@ Feature: Automatizar el Linkedin
             | lourdesdotitexeira@gmail.com        | soldecolores |
             | franciscodotitexeira@gmail.com      | Yosoyyo123   |
             | Alejandro.javierbettini@hotmail.com | Shamshiadad1 |
-
-
-    @ejecucionDiaria
-    Scenario: Mandarle mensaje a todos los contactos en Linkedin
-        Given Abrir la pagina de Linkedin
-        When Inicio sesion en Linkedin
-        And Abro Pagina de Mensajes
-        Then le entro a mandar mensaje a todo el mundo
