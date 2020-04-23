@@ -4,10 +4,10 @@ var webdriver = require('selenium-webdriver');
 var driver;
 require('chromedriver');
 var { setDefaultTimeout } = require('cucumber');
-setDefaultTimeout(600 * 1000);
+setDefaultTimeout(30000);
 
 Given('Abrir la pagina de Linkedin', async function () {
-
+  //this.driver = await new webdriver.Builder().forBrowser('chrome').build();
   this.driver = await new webdriver.Builder().usingServer('http://bd34eee6.ngrok.io/wd/hub/')
     .forBrowser('chrome').build();
   await this.driver.get('http://www.linkedin.com');
@@ -41,8 +41,8 @@ When('Busco los usuarios con el filtro que quiero', async function () {
   await this.driver.wait(until.elementLocated(By.xpath('//button[@data-control-name="all_filters"]')));
   let TodosLosFiltros = await this.driver.findElement(By.xpath('//button[@data-control-name="all_filters"]'));
   await TodosLosFiltros.click();
-  let ubicaciones = await this.driver.findElement(By.xpath('//input[@placeholder="Añadir un país o región"]'));
-  await ubicaciones.sendKeys('Miami');
+ // let ubicaciones = await this.driver.findElement(By.xpath('//input[@placeholder="Añadir un país o región"]'));
+  //await ubicaciones.sendKeys('Miami');
   let cargo = await this.driver.findElement(By.xpath('//input[@id="search-advanced-title"]'));
   await cargo.sendKeys('Recruiter');
   let Aplicar = await this.driver.findElement(By.xpath('//button[@data-control-name="all_filters_apply"]'));
@@ -67,8 +67,8 @@ When('Busco los usuarios con el filtro que quiero', async function () {
           await this.driver.navigate().refresh();
           notaPersonal = undefined;
         } else {
-          await this.driver.wait(until.elementLocated(By.xpath('//span[contains(.,"Enviar ahora")]')));
-          let botonEnviarAhora = await this.driver.findElement(By.xpath('//span[contains(.,"Enviar ahora")]'));
+          await this.driver.wait(until.elementLocated(By.xpath('//button[contains(.,"Enviar")]')));
+          let botonEnviarAhora = await this.driver.findElement(By.xpath('//button[contains(.,"Enviar")]'));
           await botonEnviarAhora.click();
           acum++;
 
