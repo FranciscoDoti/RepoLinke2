@@ -21,38 +21,55 @@ When(/^iniciar sesion en Tinder con usuario "(.*)" y contraseña "(.*)"$/, async
         var WEmasOpciones = await this.driver.findElement(By.xpath(WElements.WEmasOpciones));
         await WEmasOpciones.click();
     } catch (error) {
-        console.log("Me dio el error: " + error);
+        console.log("Me dio el error: " + error.name);
     }
 
-    await this.driver.wait(until.elementLocated(By.xpath(WElements.WEiniciarSesionFb)));
+    try {
+        await this.driver.wait(until.elementLocated(By.xpath(WElements.WEiniciarSesionFb)));
+        await this.driver.sleep(4000);
+        var WEiniciarSesionFb = await this.driver.findElement(By.xpath(WElements.WEiniciarSesionFb));
+        await WEiniciarSesionFb.click();
+        let handles = await this.driver.getAllWindowHandles();
+        await this.driver.switchTo().window(handles[1]);
+    
+        
+        await this.driver.wait(until.elementLocated(By.xpath(WElements.WEemail)));
+        var WEemail = await this.driver.findElement(By.xpath(WElements.WEemail));
+        await WEemail.sendKeys(usuario);
+        await this.driver.wait(until.elementLocated(By.xpath(WElements.WEcontraseña)));
+        var WEcontraseña = await this.driver.findElement(By.xpath(WElements.WEcontraseña));
+        await WEcontraseña.sendKeys(contraseña);
+        await this.driver.findElement(By.xpath(WElements.WEentrar)).click();
+        await this.driver.switchTo().window(handles[0]);
+    } catch (error) {
+        console.log(error.name);
+    }
+
+
     await this.driver.sleep(4000);
-    var WEiniciarSesionFb = await this.driver.findElement(By.xpath(WElements.WEiniciarSesionFb));
-    await WEiniciarSesionFb.click();
 
-    let handles = await this.driver.getAllWindowHandles();
-    await this.driver.switchTo().window(handles[1]);
+    try {
+        await this.driver.wait(until.elementLocated(By.xpath(WElements.WEpermitir)));
+        var WEpermitir = await this.driver.findElement(By.xpath(WElements.WEpermitir));
+        await WEpermitir.click();
+    } catch (error) {
+        console.log(error.name);
+    }
 
-    await this.driver.wait(until.elementLocated(By.xpath(WElements.WEemail)));
-    var WEemail = await this.driver.findElement(By.xpath(WElements.WEemail));
-    await WEemail.sendKeys(usuario);
-    await this.driver.wait(until.elementLocated(By.xpath(WElements.WEcontraseña)));
-    var WEcontraseña = await this.driver.findElement(By.xpath(WElements.WEcontraseña));
-    await WEcontraseña.sendKeys(contraseña);
-    await this.driver.findElement(By.xpath(WElements.WEentrar)).click();
-    await this.driver.switchTo().window(handles[0]);
 
-    await this.driver.wait(until.elementLocated(By.xpath(WElements.WEpermitir)));
-    var WEpermitir = await this.driver.findElement(By.xpath(WElements.WEpermitir));
-    await WEpermitir.click();
+    try {
+        await this.driver.wait(until.elementLocated(By.xpath(WElements.WEhabilitar)));
+        var WEhabilitar = await this.driver.findElement(By.xpath(WElements.WEhabilitar));
+        await WEhabilitar.click();
+    } catch (error) {
+        console.log(error.name);
+    }
 
-    await this.driver.wait(until.elementLocated(By.xpath(WElements.WEhabilitar)));
-    var WEhabilitar = await this.driver.findElement(By.xpath(WElements.WEhabilitar));
-    await WEhabilitar.click();
-
+ /*
     await this.driver.wait(until.elementLocated(By.xpath(WElements.WEacepto)));
     var WEacepto = await this.driver.findElement(By.xpath(WElements.WEacepto));
     await WEacepto.click();
-
+*/
     await this.driver.sleep(2000);
 
     /*try {
@@ -70,27 +87,26 @@ Then('mandar corazones', async function () {
     for (var i = 0; i <= 20; i++) {
 
         try {
-            await this.driver.wait(until.elementLocated(By.xpath(WElements.WEcorazon)));
+            await this.driver.sleep(3000);
             let WEcorazon = await this.driver.findElement(By.xpath(WElements.WEcorazon));
             await this.driver.sleep(300); // TODO: AGREGAR UN NUMERO RANDOM
             await WEcorazon.click();
+            console.log('se dio un Me gusta');
             await this.driver.sleep(150);
 
+            let noMeInteresa = await this.driver.findElement(By.xpath(WElements.WeNoMeInteresa)).click(); // TODO: HACER ANDAR ESTO
             let letGustasA = await this.driver.findElement(By.xpath(WElements.letGustasA));
-            
-                let campoMsj = await this.driver().findElement(By.xpath(WElements.WeCampoMensajeMatch));
-                await campoMsj.sendKeys("Hola, cómo andas?");
-                await this.driver.sleep(150);
-                let btnEnviar = await this.driver().findElement(By.xpath(WElements.WeBotonEnviarMsjMatch));
-                await btnEnviar.click();
-            
 
-            /*si matcheó 
-                => MAndar msj "hola, como andas"*/
-                
+            let campoMsj = await this.driver().findElement(By.xpath(WElements.WeCampoMensajeMatch));
+            await campoMsj.sendKeys("Hola, cómo andas?");
+            await this.driver.sleep(150);
+            let btnEnviar = await this.driver().findElement(By.xpath(WElements.WeBotonEnviarMsjMatch));
+            await btnEnviar.click();
+
+
 
         } catch (error) {
-            console.log(error);
+            console.log(error.name);
         }
     }
 });

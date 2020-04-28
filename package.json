@@ -6,7 +6,7 @@
   "scripts": {
     "test": "cucumber-js",
     "linkedinAceptarInvitaciones": "cucumber-js features/linkedin.feature",
-    "tinder": "cucumber-js features/tinder.feature",
+    "tinder": "cucumber-js features/tinder.feature --retry 3",
     "instagram": "cucumber-js features/instagram.feature"
   },
   "author": "",
