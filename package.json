@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "cucumber-js"
+    "test": "cucumber-js",
+    "linkedinAceptarInvitaciones": "cucumber-js features/linkedin.feature",
+    "tinder": "cucumber-js features/tinder.feature",
+    "instagram": "cucumber-js features/instagram.feature"
   },
   "author": "",
   "license": "ISC",

@@ -7,9 +7,9 @@ var { setDefaultTimeout } = require('cucumber');
 setDefaultTimeout(30000);
 
 Given('Abrir la pagina de Linkedin', async function () {
-  //this.driver = await new webdriver.Builder().forBrowser('chrome').build();
-  this.driver = await new webdriver.Builder().usingServer('http://bd34eee6.ngrok.io/wd/hub/')
-    .forBrowser('chrome').build();
+  this.driver = await new webdriver.Builder().forBrowser('chrome').build();
+ // this.driver = await new webdriver.Builder().usingServer('http://bd34eee6.ngrok.io/wd/hub/')
+  // .forBrowser('chrome').build();
   await this.driver.get('http://www.linkedin.com');
 
   await this.driver.manage().window().maximize();
@@ -17,7 +17,27 @@ Given('Abrir la pagina de Linkedin', async function () {
 
 });
 
+When("Ir a la seccion Mi Red", async function(){
+  await this.driver.wait(until.elementLocated(By.xpath('//span[@id="mynetwork-tab-icon"]')));
+  let botonMiRed = await this.driver.findElement(By.xpath('//span[@id="mynetwork-tab-icon"]'));
+  await botonMiRed.click();
+});
 
+When("Pongo para ver todas las invitaciones", async function(){
+  await this.driver.wait(until.elementLocated(By.xpath('//a[@data-control-name="manage_all_invites"]//span[contains(.,"Ver todo")]')));
+  let botonVerTodo = await this.driver.findElement(By.xpath('//a[@data-control-name="manage_all_invites"]//span[contains(.,"Ver todo")]'));
+  await botonVerTodo.click();
+});
+
+Then("Acepto todas las invitaciones", async function(){
+  await this.driver.wait(until.elementLocated(By.xpath('//section[ contains(@class, "mn-invitation-manager__sub-section")]//ul/li')));
+  let InvitacionesVec = await this.driver.findElements(By.xpath('//section[ contains(@class, "mn-invitation-manager__sub-section")]//ul/li'));
+  for(let i = 1; i<= InvitacionesVec.length;i++){
+      let botonAceptar = await InvitacionesVec[i].findElement(By.xpath('//button[contains(.,"Aceptar")]'));
+      await botonAceptar.click();
+  };
+ console.log("Cantidad de invitaciones:" );
+});
 
 When('Inicio sesion en Linkedin con usuario {} y contraseña {}', async function (usuario, contraseña) {
   // Write code here that turns the phrase above into concrete actions
@@ -109,3 +129,7 @@ Then('le entro a mandar mensaje a todo el mundo', async function () {
   }
 
 });
+
+Then('Cierro el browser', async function(){
+  await this.driver.quit();
+})
