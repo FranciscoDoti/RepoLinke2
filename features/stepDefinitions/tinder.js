@@ -10,7 +10,7 @@ var nameLike;
 
 Given('open Tinder', async function () {
     //usingServer('https://5cae3f60.ngrok.io/wd/hub')
-    this.driver = await new webdriver.Builder().forBrowser('chrome').build();
+    this.driver = await new webdriver.Builder().usingServer('https://5cae3f60.ngrok.io/wd/hub').forBrowser('chrome').build();
     await this.driver.get('http://www.tinder.com');
 });
 
