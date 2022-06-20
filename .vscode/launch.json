@@ -4,7 +4,18 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-
+        {
+            "name": "linkedinMandarInvitaciones",
+            "type": "node",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "program": "${workspaceRoot}/node_modules/cucumber/bin/cucumber-js",
+            "args": [
+                "${workspaceRoot}/features/linkedin.feature",
+                "--tags",
+                "@MandarInvitaciones"
+            ]
+        },
     
         {
             "name": "linkedin",

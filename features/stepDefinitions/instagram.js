@@ -26,7 +26,7 @@ When(/^INSTA. Iniciar sesion con usuario "(.*)" y contraseña "(.*)"$/, async fu
   contraseña = await this.driver.findElement(By.xpath('//input[@name= "password"]'));
   await contraseña.sendKeys(password);
   var botonEntrar;
-  botonEntrar = await this.driver.findElement(By.xpath('//button[.= "Iniciar sesión"]'));
+  botonEntrar = await this.driver.findElement(By.xpath('//button[.= "Log In"]'));
   await botonEntrar.click();
 
 });

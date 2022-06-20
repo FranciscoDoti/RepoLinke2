@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "cucumber-js",
-    "linkedinAceptarInvitaciones": "cucumber-js features/linkedin.feature",
+    "linkedinMandarInvitaciones": "cucumber-js features/linkedin.feature --tags @MandarInvitaciones",
+    "linkedin": "cucumber-js features/linkedin.feature",
     "tinder": "cucumber-js features/tinder.feature --retry 3",
     "instagram": "cucumber-js features/instagram.feature"
   },
@@ -13,7 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "chai": "^4.2.0",
-    "chromedriver": "latest",
+    "chromedriver": "^102.0.0",
     "cucumber": "^6.0.3",
     "selenium-webdriver": "^4.0.0-alpha.5"
   },
